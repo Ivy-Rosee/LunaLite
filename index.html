@@ -10,12 +10,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg: #070914;          /* deep night */
-      --bg-2:#0d1024;         /* card bg */
-      --fg: #eaf2ff;          /* text */
-      --muted:#a9b4d0;        /* muted text */
-      --brand:#7cc0ff;        /* accent */
-      --brand-2:#9b7cff;      /* secondary accent */
+      --bg: #070914;
+      --bg-2:#0d1024;
+      --fg: #eaf2ff;
+      --muted:#a9b4d0;
+      --brand:#7cc0ff;
+      --brand-2:#9b7cff;
       --ok:#5ee6a8;
       --warn:#ffd166;
       --danger:#ff6b6b;
@@ -32,7 +32,6 @@
     }
     a{color:var(--brand)} a:hover{opacity:.9}
 
-    /* Star field */
     .stars, .twinkle{
       position:fixed; inset:0; pointer-events:none; z-index:-1;
       background: transparent url('data:image/svg+xml;utf8,\
@@ -51,7 +50,6 @@
     @keyframes drift{from{background-position:0 0} to{background-position:-2000px 1000px}}
     @keyframes twinkle{0%,100%{opacity:.10}50%{opacity:.25}}
 
-    /* Layout */
     .container{max-width:1100px; margin:0 auto; padding: 0 20px}
     .navbar{position:sticky; top:0; z-index:50; backdrop-filter: blur(8px); background: rgba(7,9,20,.65); border-bottom:1px solid rgba(124,192,255,.15)}
     .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
@@ -83,16 +81,13 @@
 
     .two-col{display:grid; grid-template-columns:1fr 1fr; gap:24px}
 
-    /* Accordion */
     .accordion{border-radius:var(--card-r); overflow:hidden; border:1px solid rgba(124,192,255,.18)}
     details{background:var(--bg-2); padding:16px 18px}
     details + details{border-top:1px solid rgba(124,192,255,.18)}
     summary{cursor:pointer; font-weight:700}
 
-    /* Footer */
     footer{padding:30px 0 60px; border-top:1px solid rgba(124,192,255,.15); color:var(--muted)}
 
-    /* Responsive */
     @media (max-width: 900px){
       .hero-grid{grid-template-columns:1fr}
       .cards{grid-template-columns:1fr;}
@@ -104,6 +99,8 @@
 <body>
   <div class="stars"></div>
   <div class="twinkle"></div>
+
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="container nav-inner">
       <div class="brand"><div class="logo" aria-hidden="true"></div><b>LunaLite</b></div>
@@ -113,25 +110,14 @@
         <a href="#impacts">Impacts</a>
         <a href="#solutions">Solutions</a>
         <a href="#faq">FAQ</a>
+        <a href="#our-mission">Our Mission</a>
         <a href="#quiz">Quiz</a>
       </div>
     </div>
   </nav>
 
+  <!-- HERO HEADER -->
   <header class="hero">
-    <section id="our-item">
-  <span class="kicker">Our Item</span>
-  <h2 class="section-title">LunaLite’s Project</h2>
-  <p>
-    Over a period of several days, we were challenged by Illuminate Education to solve a social or environmental problem. After thinking about what we should solve, we agreed to choose light pollution, as this is a problem that affects one-third of the population, including us, and prevents us from fully seeing the stars and makes it harder to sleep. However, somehow, not too many people notice or even hear about it, so we decided to step up.
-  </p>
-  <p>
-    Me (Ivy-Rose), Kendylle, Pierce, Ayaan, Yana and James (also known as the LunaLite members), have been thoroughly researching and searching for solutions in attempt to reverse the effects of light pollution completely in an area known as the city of Mandurah.
-  </p>
-  <p>
-    The LunaLite members have come up with a creative solution, creating a special streetlight which is better compared to normal streetlights for the environment, people and the wildlife. It reduces negative impacts from bright lights and allows people to have better quality sleep, and it also allows nocturnal animals to wake up peacefully and without disruption. The base of our streetlights are created using recycled aluminium and plastic, the lights used are LED lights, which are the most efficient and don’t waste it much into other sources, and they will be powered from renewable energy, specifically solar energy which makes it even cheaper and more environmentally friendly.
-  </p>
-</section>
     <div class="container hero-grid">
       <div>
         <span class="kicker">Student project</span>
@@ -154,38 +140,25 @@
   </header>
 
   <main class="container">
+    <!-- ABOUT -->
     <section id="about">
-      <section id="our-item" class="section">
-  <h2>Our Item</h2>
-  <p>Logo used with permission from Illuminate Education Australia © Illuminate Education Australia.</p>
-  <p>Over a period of several days, we were challenged by Illuminate Education to solve a social or environmental problem. After thinking about what we should solve, we agreed to choose light pollution, as this is a problem that affects one-third of the population, including us, and prevents us from fully seeing the stars and makes it harder to sleep. However, somehow, not too many people notice or even hear about it, so we decided to step up. Me (Ivy-Rose), Kendylle, Pierce, Ayaan, Yana and James (also known as the LunaLite members), have been thoroughly researching and searching for solutions in attempt to reverse the effects of light pollution completely in an area known as the city of Mandurah. The LunaLite members have come up with a creative solution, creating a special streetlight which is better compared to normal streetlights for the environment, people and the wildlife, it reduces negative impacts from bright lights and allows people to have better quality sleep, and it also allows nocturnal animals to wake up peacefully and without disruption. The base of our streetlights are created using recycled aluminium and plastic, the lights used are LED lights, which are the most efficient and don’t waste it much into other sources, they will be powered from renewable energy, specifically solar energy which makes it even cheaper and more environmentally friendly.</p>
-
-  <figure style="margin-top:20px; text-align:center;">
-    <img src="assets/images/lunalite-streetlight.jpg" 
-         alt="LunaLite eco-friendly solar streetlight concept" 
-         style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.35);">
-    <figcaption style="font-size:0.9em; color:#a9b4d0; margin-top:6px;">
-      Example concept of the LunaLite solar-powered streetlight.
-    </figcaption>
-  </figure>
-</section>
       <h2 class="section-title">What is light pollution?</h2>
       <div class="two-col">
         <p>Light pollution happens when excessive or poorly designed artificial light brightens the night sky. Streetlights, billboards, homes, cars, and buildings can all contribute when light shines upward or sideways instead of only where it is needed. This makes it harder to see stars and can disturb natural day–night rhythms.</p>
         <p>There are different forms: <strong>skyglow</strong> (the bright dome over cities), <strong>glare</strong> (uncomfortable brightness), <strong>light trespass</strong> (light spilling into places it shouldn’t, like a bedroom window), and <strong>clutter</strong> (too many bright sources in one area).</p>
       </div>
-      <!-- New infographic image -->
-  <figure style="margin-top:20px; text-align:center;">
-    <img src="assets/images/light-pollution-by-noirlab.jpg"
-         alt="Light pollution infographic showing the causes and impacts of excessive artificial light and how to reduce it"
-         style="max-width:100%; height:auto; border-radius:14px; box-shadow:0 8px 24px rgba(0,0,0,0.35);">
-    <figcaption style="font-size:0.9em; color:#a9b4d0; margin-top:8px;">
-      Infographic © <a href="https://www.fws.gov/media/light-pollution-infographic-noirlab" target="_blank" rel="noopener">Marenfeld/NOIRLab/NSF/AURA</a>,
-      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">CC&nbsp;BY&nbsp;4.0</a>.
-    </figcaption>
-  </figure>
+      <figure style="margin-top:20px; text-align:center;">
+        <img src="assets/images/light-pollution-by-noirlab.jpg"
+             alt="Light pollution infographic showing the causes and impacts of excessive artificial light and how to reduce it"
+             style="max-width:100%; height:auto; border-radius:14px; box-shadow:0 8px 24px rgba(0,0,0,0.35);">
+        <figcaption style="font-size:0.9em; color:#a9b4d0; margin-top:8px;">
+          Infographic © <a href="https://www.fws.gov/media/light-pollution-infographic-noirlab" target="_blank" rel="noopener">Marenfeld/NOIRLab/NSF/AURA</a>,
+          <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">CC&nbsp;BY&nbsp;4.0</a>.
+        </figcaption>
+      </figure>
     </section>
 
+    <!-- CAUSES -->
     <section id="causes">
       <span class="kicker">Why it happens</span>
       <h2 class="section-title">Common causes</h2>
@@ -208,6 +181,7 @@
       </div>
     </section>
 
+    <!-- IMPACTS -->
     <section id="impacts">
       <span class="kicker">Why it matters</span>
       <h2 class="section-title">Impacts on people & nature</h2>
@@ -231,6 +205,7 @@
       </div>
     </section>
 
+    <!-- SOLUTIONS -->
     <section id="solutions">
       <span class="kicker">Be a night‑sky hero</span>
       <h2 class="section-title">Simple ways to help</h2>
@@ -250,6 +225,7 @@
       </div>
     </section>
 
+    <!-- FAQ -->
     <section id="faq">
       <span class="kicker">Quick answers</span>
       <h2 class="section-title">FAQ</h2>
@@ -269,6 +245,21 @@
       </div>
     </section>
 
+    <!-- OUR MISSION -->
+    <section id="our-mission">
+      <span class="kicker">Quick peek</span>
+      <h2 class="section-title">Our Mission</h2>
+      <div class="accordion">
+        <details>
+          <summary>Our Mission</summary>
+          <p>
+            Over a period of several days, we were challenged by Illuminate Education to solve a social or environmental problem. After thinking about what we should solve, we agreed to choose light pollution, as this is a problem that affects one-third of the population, including us, and prevents us from fully seeing the stars and makes it harder to sleep. However, somehow, not too many people notice or even hear about it, so we decided to step up. Me (Ivy-Rose), Kendylle, Pierce, Ayaan, Yana and James (also known as the LunaLite members), have been thoroughly researching and searching for solutions in attempt to reverse the effects of light pollution completely in an area known as the city of Mandurah. The LunaLite members have come up with a creative solution, creating a special streetlight which is better compared to normal streetlights for the environment, people and the wildlife, it reduces negative impacts from bright lights and allows people to have better quality sleep, and it also allows nocturnal animals to wake up peacefully and without disruption. The base of our streetlights are created using recycled aluminium and plastic, the lights used are LED lights, which are the most efficient and don’t waste it much into other sources, they will be powered from renewable energy, specifically solar energy which makes it even cheaper and more environmentally friendly.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
     <section id="quiz" aria-labelledby="quiz-title">
       <h2 id="quiz-title" class="section-title">Mini‑Quiz: Test your knowledge</h2>
       <div class="card" style="display:grid; gap:12px">
@@ -288,31 +279,4 @@
             <option>Brighter bulbs</option>
             <option>Shielded, downward‑facing fixtures</option>
             <option>All‑night lighting</option>
-          </select>
-        </label>
-        <button class="btn primary" id="check">Check answers</button>
-        <p id="result" aria-live="polite"></p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p><strong>LunaLite</strong> — a school project made by ivy-rose kendylle ayaan james pierce and yana. Built with semantic HTML, responsive CSS, and a sprinkle of JS. No frameworks required.</p>
-      <p>Want to improve this page? Edit <code>index.html</code> on GitHub Pages.</p>
-    </div>
-  </footer>
-
-  <script>
-    // simple quiz checker
-    document.getElementById('check').addEventListener('click', ()=>{
-      const q1 = document.getElementById('q1').value;
-      const q2 = document.getElementById('q2').value;
-      const ok = (q1 === 'Warm‑white 2700–3000K LED') && (q2 === 'Shielded, downward‑facing fixtures');
-      const el = document.getElementById('result');
-      el.textContent = ok ? '✅ Nice! You got them both right.' : '❌ Not quite. Try again! Hint: warm light and shielded fixtures are best.';
-      el.style.color = ok ? 'var(--ok)' : 'var(--danger)';
-    });
-  </script>
-</body>
-</html>
+          </
