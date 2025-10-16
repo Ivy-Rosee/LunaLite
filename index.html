@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LunaLite — Understanding Light Pollution</title>
+  <meta name="description" content="A student project website explaining light pollution: what it is, causes, impacts, and how to help."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #070914;          /* deep night */
+      --bg-2:#0d1024;         /* card bg */
+      --fg: #eaf2ff;          /* text */
+      --muted:#a9b4d0;        /* muted text */
+      --brand:#7cc0ff;        /* accent */
+      --brand-2:#9b7cff;      /* secondary accent */
+      --ok:#5ee6a8;
+      --warn:#ffd166;
+      --danger:#ff6b6b;
+      --card-r:18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; color:var(--fg); background: radial-gradient(1200px 800px at 15% -10%, #0a1445 0%, transparent 60%),
+      radial-gradient(900px 1200px at 90% -20%, #22104a 0%, transparent 55%), var(--bg);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.6;
+    }
+    a{color:var(--brand)} a:hover{opacity:.9}
+
+    /* Star field */
+    .stars, .twinkle{
+      position:fixed; inset:0; pointer-events:none; z-index:-1;
+      background: transparent url('data:image/svg+xml;utf8,\
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">\
+          <defs>\
+            <radialGradient id="g" r="50%">\
+              <stop offset="0%" stop-color="white"/>\
+              <stop offset="100%" stop-color="transparent"/>\
+            </radialGradient>\
+          </defs>\
+        </svg>') repeat;
+      animation: drift 160s linear infinite;
+      opacity:.35;
+    }
+    .twinkle{animation: twinkle 10s ease-in-out infinite; opacity:.18}
+    @keyframes drift{from{background-position:0 0} to{background-position:-2000px 1000px}}
+    @keyframes twinkle{0%,100%{opacity:.10}50%{opacity:.25}}
+
+    /* Layout */
+    .container{max-width:1100px; margin:0 auto; padding: 0 20px}
+    .navbar{position:sticky; top:0; z-index:50; backdrop-filter: blur(8px); background: rgba(7,9,20,.65); border-bottom:1px solid rgba(124,192,255,.15)}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
+    .brand{display:flex; gap:10px; align-items:center; font-family:Poppins, Inter, sans-serif}
+    .logo{width:34px; height:34px; border-radius:10px; background: conic-gradient(from 210deg, var(--brand), var(--brand-2)); box-shadow: var(--shadow)}
+    .brand b{font-weight:800; letter-spacing:.4px}
+    .nav a{margin-left:18px; text-decoration:none; font-weight:600; color:var(--fg); opacity:.85}
+    .nav a:hover{opacity:1}
+
+    header.hero{padding:72px 0 48px}
+    .hero-grid{display:grid; gap:26px; grid-template-columns:1.2fr .8fr; align-items:center}
+    .hero h1{font-family:Poppins, Inter, sans-serif; font-size: clamp(32px, 4vw, 44px); line-height:1.15; margin:0}
+    .hero p{font-size:18px; color:var(--muted); margin:10px 0 20px}
+    .cta{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{appearance:none; border:none; border-radius:14px; padding:12px 18px; font-weight:700; cursor:pointer}
+    .btn.primary{background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#08111f; box-shadow: var(--shadow)}
+    .btn.ghost{background:transparent; color:var(--fg); border:1px solid rgba(124,192,255,.35)}
+    .hero-card{background:rgba(13,16,36,.66); border:1px solid rgba(124,192,255,.25); border-radius:var(--card-r); padding:18px; box-shadow: var(--shadow)}
+    .hero-card ul{margin:0; padding-left:18px}
+
+    section{padding:56px 0}
+    h2.section-title{font-family:Poppins, Inter, sans-serif; font-size: clamp(24px, 3.2vw, 32px); margin:0 0 18px}
+    .kicker{color:var(--brand); font-weight:800; letter-spacing:.16em; text-transform:uppercase; font-size:12px}
+
+    .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .card{background:var(--bg-2); border:1px solid rgba(124,192,255,.18); border-radius:var(--card-r); padding:20px; box-shadow:var(--shadow)}
+    .card h3{margin-top:0; font-family:Poppins}
+    .pill{display:inline-block; padding:4px 10px; border-radius:999px; font-weight:700; font-size:12px; background:rgba(124,192,255,.14); border:1px solid rgba(124,192,255,.3)}
+
+    .two-col{display:grid; grid-template-columns:1fr 1fr; gap:24px}
+
+    /* Accordion */
+    .accordion{border-radius:var(--card-r); overflow:hidden; border:1px solid rgba(124,192,255,.18)}
+    details{background:var(--bg-2); padding:16px 18px}
+    details + details{border-top:1px solid rgba(124,192,255,.18)}
+    summary{cursor:pointer; font-weight:700}
+
+    /* Footer */
+    footer{padding:30px 0 60px; border-top:1px solid rgba(124,192,255,.15); color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr;}
+      .two-col{grid-template-columns:1fr}
+      .nav a{margin-left:12px}
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="twinkle"></div>
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <div class="brand"><div class="logo" aria-hidden="true"></div><b>LunaLite</b></div>
+      <div class="nav" role="navigation" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#causes">Causes</a>
+        <a href="#impacts">Impacts</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#faq">FAQ</a>
+        <a href="#quiz">Quiz</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="kicker">Student project</span>
+        <h1>LunaLite: Understanding Light Pollution</h1>
+        <p>Artificial light can wash out the night sky, affect wildlife, and even disrupt our sleep. Explore what causes light pollution and how simple choices can bring back the stars.</p>
+        <div class="cta">
+          <a class="btn primary" href="#solutions">How to help</a>
+          <a class="btn ghost" href="#about">Learn more</a>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="Quick facts">
+        <h3 style="margin-top:4px">Quick facts</h3>
+        <ul>
+          <li>Shielded lights reduce skyglow and glare.</li>
+          <li>Warm lights (<span aria-label="Kelvin">≤</span> 3000K) are friendlier for people and wildlife.</li>
+          <li>Turning off unused lights saves energy <em>and</em> the night.</li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="about">
+      <h2 class="section-title">What is light pollution?</h2>
+      <div class="two-col">
+        <p>Light pollution happens when excessive or poorly designed artificial light brightens the night sky. Streetlights, billboards, homes, cars, and buildings can all contribute when light shines upward or sideways instead of only where it is needed. This makes it harder to see stars and can disturb natural day–night rhythms.</p>
+        <p>There are different forms: <strong>skyglow</strong> (the bright dome over cities), <strong>glare</strong> (uncomfortable brightness), <strong>light trespass</strong> (light spilling into places it shouldn’t, like a bedroom window), and <strong>clutter</strong> (too many bright sources in one area).</p>
+      </div>
+    </section>
+
+    <section id="causes">
+      <span class="kicker">Why it happens</span>
+      <h2 class="section-title">Common causes</h2>
+      <div class="cards" role="list">
+        <article class="card" role="listitem">
+          <span class="pill">Unshielded fixtures</span>
+          <h3>Light aimed the wrong way</h3>
+          <p>When fixtures send light upward or sideways, it bounces in the atmosphere and brightens the sky. Using full cut‑off (shielded) fixtures directs light to the ground.</p>
+        </article>
+        <article class="card" role="listitem">
+          <span class="pill">Too bright</span>
+          <h3>Overlighting</h3>
+          <p>Brighter isn’t always safer. Oversized bulbs create glare and waste energy. Choose the lowest brightness that achieves the task.</p>
+        </article>
+        <article class="card" role="listitem">
+          <span class="pill">Blue‑heavy light</span>
+          <h3>Cool color temperature</h3>
+          <p>Cool (blue‑rich) LEDs scatter more in the atmosphere and suppress melatonin more at night. Prefer warm‑white (≤3000K) lighting outdoors.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="impacts">
+      <span class="kicker">Why it matters</span>
+      <h2 class="section-title">Impacts on people & nature</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>Humans</h3>
+          <ul>
+            <li>Disrupted sleep and circadian rhythms</li>
+            <li>Reduced night vision due to glare</li>
+            <li>Energy waste and higher bills</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Wildlife</h3>
+          <ul>
+            <li>Confused navigation for birds, turtles, & insects</li>
+            <li>Altered feeding & migration patterns</li>
+            <li>Ecosystem imbalance from reduced darkness</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="solutions">
+      <span class="kicker">Be a night‑sky hero</span>
+      <h2 class="section-title">Simple ways to help</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>1. Aim it</h3>
+          <p>Use <em>shielded</em> fixtures so light points down. Avoid exposed bulbs that shine sideways.</p>
+        </div>
+        <div class="card">
+          <h3>2. Dim it</h3>
+          <p>Choose lower lumen bulbs and add dimmers or timers. Motion sensors keep areas safe while lights stay off most of the time.</p>
+        </div>
+        <div class="card">
+          <h3>3. Warm it</h3>
+          <p>Pick warm‑white bulbs (≤3000K). Indoors at night, switch to warm lamps to protect sleep.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <span class="kicker">Quick answers</span>
+      <h2 class="section-title">FAQ</h2>
+      <div class="accordion">
+        <details>
+          <summary>Are LEDs good or bad?</summary>
+          <p>LEDs are efficient, but choose warm‑white options and proper shielding. It’s about <em>how</em> we use them.</p>
+        </details>
+        <details>
+          <summary>Does brighter lighting always mean safer streets?</summary>
+          <p>Not necessarily. Glare from over‑bright lights can make it harder to see. Even, well‑aimed lighting improves visibility.</p>
+        </details>
+        <details>
+          <summary>What’s the easiest thing I can do tonight?</summary>
+          <p>Turn off unnecessary outdoor lights and close curtains. If you have outdoor fixtures, angle them down.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="quiz" aria-labelledby="quiz-title">
+      <h2 id="quiz-title" class="section-title">Mini‑Quiz: Test your knowledge</h2>
+      <div class="card" style="display:grid; gap:12px">
+        <label>
+          1) Which bulb is best for outdoor night use?
+          <select id="q1">
+            <option value="">Choose…</option>
+            <option>Cool‑white 6000K LED</option>
+            <option>Warm‑white 2700–3000K LED</option>
+            <option>Unshielded halogen floodlight</option>
+          </select>
+        </label>
+        <label>
+          2) What helps reduce skyglow the most?
+          <select id="q2">
+            <option value="">Choose…</option>
+            <option>Brighter bulbs</option>
+            <option>Shielded, downward‑facing fixtures</option>
+            <option>All‑night lighting</option>
+          </select>
+        </label>
+        <button class="btn primary" id="check">Check answers</button>
+        <p id="result" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>LunaLite</strong> — a school project by Ivy‑Rosee. Built with semantic HTML, responsive CSS, and a sprinkle of JS. No frameworks required.</p>
+      <p>Want to improve this page? Edit <code>index.html</code> on GitHub Pages.</p>
+    </div>
+  </footer>
+
+  <script>
+    // simple quiz checker
+    document.getElementById('check').addEventListener('click', ()=>{
+      const q1 = document.getElementById('q1').value;
+      const q2 = document.getElementById('q2').value;
+      const ok = (q1 === 'Warm‑white 2700–3000K LED') && (q2 === 'Shielded, downward‑facing fixtures');
+      const el = document.getElementById('result');
+      el.textContent = ok ? '✅ Nice! You got them both right.' : '❌ Not quite. Try again! Hint: warm light and shielded fixtures are best.';
+      el.style.color = ok ? 'var(--ok)' : 'var(--danger)';
+    });
+  </script>
+</body>
+</html>
