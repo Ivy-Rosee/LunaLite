@@ -289,3 +289,64 @@
             <option>Shielded, downward‑facing fixtures</option>
             <option>All‑night lighting</option>
           </
+<!-- QUIZ -->
+<section id="quiz" aria-labelledby="quiz-title">
+  <h2 id="quiz-title" class="section-title">Mini‑Quiz: Test your knowledge</h2>
+  <div class="card" style="display:grid; gap:12px">
+    <label>
+      1) Which bulb is best for outdoor night use?
+      <select id="q1">
+        <option value="">Choose…</option>
+        <option value="wrong">Cool‑white 6000K LED</option>
+        <option value="correct">Warm‑white 2700–3000K LED</option>
+        <option value="wrong">Unshielded halogen floodlight</option>
+      </select>
+    </label>
+
+    <label>
+      2) What helps reduce skyglow the most?
+      <select id="q2">
+        <option value="">Choose…</option>
+        <option value="wrong">Brighter bulbs</option>
+        <option value="correct">Shielded, downward‑facing fixtures</option>
+        <option value="wrong">All‑night lighting</option>
+      </select>
+    </label>
+
+    <label>
+      3) Which of these is NOT a form of light pollution?
+      <select id="q3">
+        <option value="">Choose…</option>
+        <option value="wrong">Skyglow</option>
+        <option value="wrong">Glare</option>
+        <option value="correct">Thermal glow</option>
+      </select>
+    </label>
+
+    <label>
+      4) Turning off unnecessary lights helps with:
+      <select id="q4">
+        <option value="">Choose…</option>
+        <option value="correct">Energy saving and darker skies</option>
+        <option value="wrong">Increasing street brightness</option>
+        <option value="wrong">Making indoor lighting worse</option>
+      </select>
+    </label>
+
+    <button id="submitQuiz" class="btn primary">Submit Answers</button>
+
+    <p style="font-size:0.8em; color:var(--muted); margin-top:8px;">Quiz made by Ivy-Rose</p>
+  </div>
+</section>
+
+<script>
+  document.getElementById('submitQuiz').addEventListener('click', function() {
+    let score = 0;
+    const answers = ['q1','q2','q3','q4'];
+    answers.forEach(q => {
+      const val = document.getElementById(q).value;
+      if(val === 'correct') score++;
+    });
+    alert(`You got ${score} out of ${answers.length} correct! 🌟`);
+  });
+</script>
