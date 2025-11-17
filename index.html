@@ -268,64 +268,73 @@
       </div>
     </section>
 
-    <!-- QUIZ -->
-    <section id="quiz" aria-labelledby="quiz-title">
-      <h2 id="quiz-title" class="section-title">Mini‑Quiz: Test your knowledge</h2>
-      <div class="card" style="display:grid; gap:12px">
-        <label>
-          1) Which bulb is best for outdoor night use?
-          <select id="q1">
-            <option value="">Choose…</option>
-            <option>Cool‑white 6000K LED</option>
-            <option>Warm‑white 2700–3000K LED</option>
-            <option>Unshielded halogen floodlight</option>
-          </select>
-        </label>
-        <label>
-          2) What helps reduce skyglow the most?
-          <select id="q2">
-            <option value="">Choose…</option>
-            <option>Brighter bulbs</option>
-            <option>Shielded, downward‑facing fixtures</option>
-            <option>All‑night lighting</option>
-          </
-            <label>
-  3) How has losing access to stars affected astronomy research?
-  <select id="q3">
-    <option value="">Choose…</option>
-    <option>It makes research harder due to less visible stars</option>
-    <option>It has no effect</option>
-    <option>It helps research</option>
-  </select>
-</label>
-<label>
-  4) Are there any historical or cultural stories we are losing because of stars that aren’t visible anymore?
-  <select id="q4">
-    <option value="">Choose…</option>
-    <option>Yes, many cultures lose star-based stories and myths</option>
-    <option>No, all stories are still preserved</option>
-    <option>Only modern stories are affected</option>
-  </select>
-</label>
-<label>
-  5) Does light pollution have an indirect effect on ecosystems or climate patterns?
-  <select id="q5">
-    <option value="">Choose…</option>
-    <option>Yes, it can disrupt ecosystems and animal behaviors</option>
-    <option>No, it only affects humans</option>
-    <option>It only affects weather, not ecosystems</option>
-  </select>
-</label>
-            <button id="submitQuiz" class="btn primary">Submit Answers</button>
-<div id="quizResult" style="margin-top:12px; font-weight:600;"></div>
+<!-- QUIZ SECTION -->
+<div class="card" id="quiz">
+  <h2>Test Your Skills (Quiz)</h2>
 
+  <label>
+    1) What type of lights are best for reducing light pollution?
+    <select id="q1">
+      <option value="">Choose…</option>
+      <option>Warm-white 2700–3000K LED</option>
+      <option>Bright blue-white LED</option>
+      <option>Any light, it doesn’t matter</option>
+    </select>
+  </label>
+
+  <label>
+    2) What lighting choice improves star visibility?
+    <select id="q2">
+      <option value="">Choose…</option>
+      <option>Brighter bulbs</option>
+      <option>Shielded, downward-facing fixtures</option>
+      <option>All-night lighting</option>
+    </select>
+  </label>
+
+  <label>
+    3) How has losing access to stars affected astronomy research?
+    <select id="q3">
+      <option value="">Choose…</option>
+      <option>It makes research harder due to less visible stars</option>
+      <option>It has no effect</option>
+      <option>It helps research</option>
+    </select>
+  </label>
+
+  <label>
+    4) Are there any cultural stories we’re losing because some stars aren’t visible anymore?
+    <select id="q4">
+      <option value="">Choose…</option>
+      <option>Yes, many cultures lose star-based stories and myths</option>
+      <option>No, all stories are still preserved</option>
+      <option>Only modern stories are affected</option>
+    </select>
+  </label>
+
+  <label>
+    5) Does light pollution affect ecosystems?
+    <select id="q5">
+      <option value="">Choose…</option>
+      <option>Yes, it can disrupt ecosystems and animal behaviors</option>
+      <option>No, it only affects humans</option>
+      <option>It only affects weather, not ecosystems</option>
+    </select>
+  </label>
+
+  <!-- Submit Button -->
+  <button id="submitQuiz" class="btn primary">Submit Answers</button>
+  <div id="quizResult" style="margin-top:12px; font-weight:600;"></div>
+</div>
+
+<!-- SCRIPT -->
 <script>
   document.getElementById('submitQuiz').addEventListener('click', () => {
     let score = 0;
 
     const answers = {
-      q1: 'Warm‑white 2700–3000K LED',
-      q2: 'Shielded, downward‑facing fixtures',
+      q1: 'Warm-white 2700–3000K LED',
+      q2: 'Shielded, downward-facing fixtures',
       q3: 'It makes research harder due to less visible stars',
       q4: 'Yes, many cultures lose star-based stories and myths',
       q5: 'Yes, it can disrupt ecosystems and animal behaviors'
