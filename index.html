@@ -316,3 +316,28 @@
     <option>It only affects weather, not ecosystems</option>
   </select>
 </label>
+            <button id="submitQuiz" class="btn primary">Submit Answers</button>
+<div id="quizResult" style="margin-top:12px; font-weight:600;"></div>
+
+<script>
+  document.getElementById('submitQuiz').addEventListener('click', () => {
+    let score = 0;
+
+    const answers = {
+      q1: 'Warm‑white 2700–3000K LED',
+      q2: 'Shielded, downward‑facing fixtures',
+      q3: 'It makes research harder due to less visible stars',
+      q4: 'Yes, many cultures lose star-based stories and myths',
+      q5: 'Yes, it can disrupt ecosystems and animal behaviors'
+    };
+
+    for (let q in answers) {
+      const userAnswer = document.getElementById(q).value;
+      if (userAnswer === answers[q]) score++;
+    }
+
+    const total = Object.keys(answers).length;
+    document.getElementById('quizResult').textContent = 
+      `You got ${score} out of ${total} correct!`;
+  });
+</script>
